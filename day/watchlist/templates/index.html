@@ -6,7 +6,11 @@
     <title>{{name}}'watchlist</title>
 </head>
 <body>
-    <h2>{{name}}'watchlist</h2>
+    
+    <h2>
+        <img src="{{ url_for('static',filename='images/0.jpg')}}" alt="头像" class="0">
+        {{name}}'watchlist
+    </h2>
 
     {# 过滤器 #}
     <p>总共{{ movies|length }}个电影</p>
