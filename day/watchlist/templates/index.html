@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{name}}'watchlist</title>
+</head>
+<body>
+    <h2>{{name}}'watchlist</h2>
+
+    {# 过滤器 #}
+    <p>总共{{ movies|length }}个电影</p>
+    <ul>
+        {% for movie in movies %}
+        <li>{{movie.title}}-{{movie.name}}</li>
+        {% endfor %}
+    </ul>
+    <footer>
+        <small>&copy;2020 &nbsp;&nbsp;&nbsp; <a href="#">1903c</a></small>
+    </footer>
+</body>
+</html>
