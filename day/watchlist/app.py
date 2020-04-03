@@ -33,12 +33,8 @@ class Movie(db.Model):
 # views 视图函数
 @app.route('/')
 def index():
-   
-    user = User.query.first()
     movies = Movie.query.all()
-
-
-    return render_template('index.html',user=user,movies=movies)
+    return render_template('index.html',movies=movies)
 
 # 自定义命令
 @app.cli.command()  # 注册命令
@@ -75,12 +71,20 @@ def forge():
 
 
 
+
+# 错误处理函数
 @app.errorhandler(404)
 def page_not_found(e):
+    
+    return render_template('404.html')
+
+
+
+
+
+# 模板上下文处理函数
+@app.context_processor
+def common_user():
     user = User.query.first()
-    return render_template('404.html',user=user)
-
-
-
-
+    return dict(user=user)
 

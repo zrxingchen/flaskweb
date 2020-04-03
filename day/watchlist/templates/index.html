@@ -1,27 +1,16 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ user.name }}'watchlist</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}">
-</head>
-<body>
-    
-    <h2>
-        <img src="{{ url_for('static',filename='images/0.jpg')}}" alt="头像" class="ac">
-        {{ user.name }}'watchlist
-    </h2>
 
-    {# 过滤器 #}
-    <p>总共{{ movies|length }}个电影</p>
-    <ul class='movie-list'>
-        {% for movie in movies %}
-        <li>{{movie.title}}-{{movie.name}}</li>
-        {% endfor %}
-    </ul>
-    <footer>
-        <small>&copy;2020 &nbsp;&nbsp;&nbsp; <a href="#">1903c</a></small>
-    </footer>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<p>总共{{ movies|length }}个电影</p>
+<ul class='movie-list'>
+    {% for movie in movies %}
+    <li>
+        {{movie.title}} - {{movie.year}}
+        <span class='float-right'>
+            <a class='baidu' href="http://v.baidu.com/v?word={{ movie.title }}&ct=301989888&rn=67&pn=0&db=0&s=0&fbl=800&ie=utf-8&oq={{movie.title}}&f=3&rsp=0" target="_blank">百度视频</a>
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock%}

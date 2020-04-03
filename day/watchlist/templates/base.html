@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.name }}'watchlist</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}">
+    {% endblock %}
+</head>
+<body>
+    
+    <h2>
+        <img src="{{ url_for('static',filename='images/0.jpg')}}" alt="头像" class="ac">
+        {{ user.name }}'watchlist
+    </h2>
+    <nav>
+        <ul>
+            <li>
+                <a href="{{ url_for('index')}}"> 首页</a>
+            </li>
+        </ul>
+
+
+    </nav>
+    {% block content %}
+    
+    {% endblock%}
+
+
+    <footer>
+        <small>&copy;2020 &nbsp;&nbsp;&nbsp; <a href="#">1903c</a></small>
+    </footer>
+</body>
+</html>
