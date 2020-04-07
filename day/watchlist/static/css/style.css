@@ -48,6 +48,7 @@ nav li a{
     text-align: center;
     padding: 8px 12px;
     text-decoration:none;
+    float: right;
 
 }
 nav li a:hover{
