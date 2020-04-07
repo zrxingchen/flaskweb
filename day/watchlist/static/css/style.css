@@ -14,7 +14,7 @@ footer{
     padding: 10px;
 }
 .ac{
-    width: 10px;
+    width: 20px;
 }
 
 .movie-list{
@@ -48,7 +48,7 @@ nav li a{
     text-align: center;
     padding: 8px 12px;
     text-decoration:none;
-    float: right;
+    
 
 }
 nav li a:hover{
