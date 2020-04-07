@@ -18,6 +18,16 @@
         <span class='float-right'>
             <a class='baidu' href="http://v.baidu.com/v?word={{ movie.title }}&ct=301989888&rn=67&pn=0&db=0&s=0&fbl=800&ie=utf-8&oq={{movie.title}}&f=3&rsp=0" target="_blank">百度视频</a>
         </span>
+        <span class='float-right'>
+            <form action="{{url_for('delete',movie_id=movie.id)}}" method="POST">
+                <input type="submit" name='delete' value="删除" onclick="return confirm('Are you sure?')">
+            </form>
+
+        </span>
+        <span class='float-right'>
+            <a class='btn' href="{{ url_for('edit',movie_id=movie.id)  }}">编辑</a>
+
+        </span>
     </li>
     {% endfor %}
 </ul>

@@ -3,6 +3,7 @@ import os,sys
 from flask import Flask,url_for,render_template,request,flash,redirect
 from flask_sqlalchemy import SQLAlchemy
 import click
+from werkzeug.security import generate_password_hash,check_password_hash
 
 WIN = sys.platform.startswith('win')
 if WIN:
@@ -17,10 +18,11 @@ app.config['SECRET_KEY'] = '1903_dev'
 
 db = SQLAlchemy(app)
 # models  数据层
+
 class User(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     name = db.Column(db.String(20))
-
+  
 class Movie(db.Model):
      id = db.Column(db.Integer,primary_key=True)
      title = db.Column(db.String(60))
@@ -38,7 +40,7 @@ def index():
         # 获取表单得数据
         title = request.form.get('title')
         year = request.form.get('year')
-        #  验证数据
+        #  验证数据  year长度不能超过4 title 长度不能超过60
         if not title or not year or len(year)>4 or  len(title)>60:
             flash('输入错误')
             return redirect(url_for('index'))
@@ -49,8 +51,43 @@ def index():
         flash('创建成功')
         return redirect(url_for('index'))
 
-    movies = Movie.query.all()
+    movies = Movie.query.all()  # 读取所有得电影记录
     return render_template('index.html',movies=movies)
+
+
+
+
+# 编辑视图函数
+@app.route('/movie/edit/<int:movie_id>', methods=['GET', 'POST'])
+def edit(movie_id):
+    movie = Movie.query.get_or_404(movie_id)
+
+    if request.method == 'POST':
+        title = request.form['title']
+        year = request.form['year']
+
+        if not title or not year or len(year) > 4 or len(title) > 60:
+            flash('输入错误')
+            return redirect(url_for('edit', movie_id=movie_id))
+
+        movie.title = title
+        movie.year = year
+        db.session.commit()
+        flash('修改成功')
+        return redirect(url_for('index'))
+
+    return render_template('edit.html', movie=movie)
+
+
+# 编辑删除视图函数
+@app.route('/movie/delete/<int:movie_id>', methods=['POST'])
+def delete(movie_id):
+    movie = Movie.query.get_or_404(movie_id)
+    db.session.delete(movie)
+    db.session.commit()
+    flash('Item deleted.')
+    return redirect(url_for('index'))
+
 
 # 自定义命令
 @app.cli.command()  # 注册命令
@@ -104,3 +141,6 @@ def common_user():
     user = User.query.first()
     return dict(user=user)
 
+
+
+ 
