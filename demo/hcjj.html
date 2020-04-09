@@ -52,13 +52,23 @@
                 </div>
             </li>
             <li>
-                <div class="removed">
+                <div class="checkbox">
                     <label for="">
                         <input class="js-item" type="checkbox"> 电脑
                     </label>
                 </div>
             </li>
         </ul>
+        <!-- 修改标题-->>
+        <div class="footer">
+            <hr>
+            <span>
+                改变你的标题
+
+            </span>
+            <input type="text" class='js-change-title' value='我的购物车清单'>
+
+        </div>
     </div>
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
@@ -75,12 +85,24 @@
             $li = $('<li>').appendTo($ul)
             $div = $('<div>').addClass('checkbox').appendTo($li)
             $label = $('<label>').appendTo($div)
-            $('<input>').addClass('js-item').attr('type','checkbox').appendTo($label)
+            $('<input>').addClass('js-item').attr('type','checkbox').appendTo($label).click(toggleRemoved)
             $label.append(value)
             $('.js-new-item').val('');
         }
 
+
+        function toggleRemoved(ev){
+            // 获取当前点击的对象  clesest遍历
+            $(ev.currentTarget).closest('li').toggleClass('removed')
+
+        }
+        function onChangeTitle(){
+            $('h2').text( $('.js-change-title').val())
+        }
+
         $(".js-add").click(onAdd)
+        $('.js-item').click(toggleRemoved)
+        $('.js-change-title').keyup(onChangeTitle)
     })
 </script>
 </html>
