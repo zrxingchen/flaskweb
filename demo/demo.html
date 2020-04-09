@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前端HTML,CSS,JavaScript体验课demo</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            color: red;
+            font-size: 50px;
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box" id="box" >
+        1903
+    </div>
+    <div class="container" id="container">1900
+
+    </div>
+    
+</body>
+<script>
+    // 第一步，获取HTNL元素
+    var oBox = document.getElementById('box')
+    //第二部 ，添加点击事件
+    oBox.onclick = function(){
+        alert('你点击了我')
+    }
+</script>
+</html>
