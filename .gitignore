@@ -5,3 +5,6 @@ __pycache__
 env
 .env
 *.db
+css
+fonts
+node_modules
