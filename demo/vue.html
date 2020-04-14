@@ -34,42 +34,67 @@
 <body>
     <div class="container" id="app">
         <h2>{{ title }}</h2>
-        <div class="input-group">
-            <input v-model='newItem' class="form-control" type="text" placeholder="输入你想购买的物品">
-            <span class="input-group-btn">
-                <button v-on:click='addItem' type="button" class="btn btn-default">添加到购物车</button>
-            </span>
-        </div>
-        <ul>
-            <li v-for="item in items" v-bind:class="{'removed':item.checked}">
-                <div class="checkbox">
-                    <label for="">
-                        <input type="checkbox" v-model="item.checked">{{ item.text }}
-                    </label>
-                </div>
-            </li>
-        </ul>
+        <add-item-component>
+
+        </add-item-component>
+        <items-component>
+
+        </items-component>
         <!-- 修改标题 -->
         <div class="footer">
             <hr>
             <span>改变你的标题</span>
-            <input v-model="title">
+           <hange-title-component>
+
+           </hange-title-component>
         </div>
+        <div>{{ item }}平方是<span v-square='item'></span></div>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
+
+    // 自定义指令square ，v-square
+    Vue.directive('square',function(el,binding){
+        el.innerHTML = Math.pow(binding.value,2)
+    })
+
     var data = {
         items: [
             {text:'苹果',checked:true},
             {text:'电脑',checked:true}
         ],
         title: "我的购物车",
-        newItem:''
+        newItem:'',
+        item:10
     }
-    new Vue({
-        el: '#app',
-        data: data,
+    // 创建列表组件
+    var ItemsComponents = Vue.extend({
+        data:function(){
+            return data;
+        },
+        template: '<ul>' +
+        '<li v-for="item in items" v-bind:class="{removed:item.checked}">' +
+            '<div class="checkbox">' + 
+                '<label for="">'+
+                    '<input type="checkbox" v-model="item.checked">{{ item.text }}'+
+                '</label>'+
+            '</div>'+
+        '</li>'+
+        '</ul>'
+    })
+    // 创建改变标题组件
+    var ChangeTitleCommponent = Vue.extend({
+        data:function(){
+            return data;
+        },
+        template:' <input v-model="title">'
+    })
+       // 创建添加道购物车组件
+       var AddItemCommponent = Vue.extend({
+        data:function(){
+            return data;
+        },
         methods:{
             addItem:function(){
                 var text;
@@ -81,11 +106,26 @@
                     })
                 };
                 this.newItem = ''
-            },
-            showItem:function(){
-                console.log('ddddddd')
             }
-        }
+        },
+        template:
+            '<div class="input-group">'+
+            '<input v-model="newItem" class="form-control" type="text" placeholder="输入你想购买的物品">'+
+            '<span class="input-group-btn">'+
+                '<button v-on:click="addItem" type="button" class="btn btn-default">添加到购物车</button>'+
+            '</span>'+
+            '</div>'
+    });
+
+
+    // 注册组件
+    Vue.component('items-component',ItemsComponents);
+    Vue.component('change-title-component',ChangeTitleCommponent);
+    Vue.component('add-item-component',AddItemCommponent);
+
+    new Vue({
+        el: '#app',
+        data: data
     })
 </script>
 

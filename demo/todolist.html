@@ -44,6 +44,76 @@
         STOPPED:'stopped',
         PAUSE:'paused'
     }
+    // 创建列表组件
+    var ItemsComponents = Vue.extend({
+        data:function(){
+            return data;
+
+        },
+        template:' <button class="btn btn-default" :disabled="state=== started  " v-on:click="start()">'+
+                '<i class="glyphicon glyphicon-play"> '+ '</i>'+
+            '</button>' + 
+            '<button class="btn btn-default" :disabled="state!== started " v-on:click="pause()">'+
+                '<i class="glyphicon glyphicon-pause"> '+ '</i> '+
+            '</button> ' + 
+            '<button class="btn btn-default" :disabled="state!== started  && state!== paused " v-on:click="stop()"> ' + 
+                '<i class="glyphicon glyphicon-stop"> ' + '</i> ' + 
+            '</button>'
+    })
+    // 创建状态组件
+    var SubmintCommponents = Vue.extend({
+        data:function(){
+            return data;
+        },
+        template:' <h3>{{ workState }}</h3>'
+    })
+    // 创建倒计时组件
+    var OrderCommponents = Vue.extend({
+        data:function(){
+            return data;
+
+        },
+        methods: {
+            start: function () {
+                this.state = STATES.STARTED
+                this._tick()
+                this.interval = setInterval(this._tick, 1000);
+            },
+            pause: function () {
+                this.state = STATES.PAUSE
+                clearInterval(this.interval)
+            },
+            stop: function () {
+                this.state = STATES.STOPPED
+                clearInterval(this.interval)
+                this.workState = WROK_STATES.WORK
+                this.minute = WORKING_TIME_LENGTH_IN_MINUTES
+                this.second = 0
+            },
+            _tick: function () {
+                // second不是0，second减1就行了
+                if (this.second !== 0) {
+                    this.second--;
+                    return;
+                }
+                // second是0，minute不是0，minute-1，second从0换到59
+                if (this.minute !== 0) {
+                    this.minute--;
+                    this.second = 59;
+                    return;
+                }
+                // second是0，minute也是0，切换工作状态，切换倒计时时间
+                this.workState = this.workState === WROK_STATES.WORK ? WROK_STATES.REST : WROK_STATES.WORK
+                if (this.workState === WROK_STATES.WORK) {
+                    this.minute = WORKING_TIME_LENGTH_IN_MINUTES
+                } else {
+                    this.minute = RESTING_TIME_LENGTH_IN_MINUTES
+                }
+
+            }
+        }
+    })
+
 
     new Vue({
         el: "#app",
