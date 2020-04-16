@@ -2,7 +2,8 @@
   <div>
     <div class="app-head">
       <div class="app-head-inner">
-        <img src="./assets/logo.png" alt="">
+        <img src="./assets/logo.png" alt />
+        <span class="app-title">3C产品商城</span>
         <div class="head-nav">
           <ul class="nav-list">
             <li>登录</li>
@@ -24,53 +25,140 @@
 </template>
 
 <script>
-export default {
-}
+export default {};
 </script>
 
 <style>
 /* reset样式 */
-html,body,div,span,applet,object,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
-	margin:0;
-	padding:0;
-	border:0;
-	font-size:100%;
-	font:inherit;
-	font-weight:normal;
-	vertical-align:baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  font-weight: normal;
+  vertical-align: baseline;
 }
-ol,ul,li {
-	list-style:none;
+ol,
+ul,
+li {
+  list-style: none;
 }
-blockquote,q {
-	quotes:none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before,blockquote:after,q:before,q:after {
-	content:'';
-	content:none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse:collapse;
-	border-spacing:0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
-th,td {
-	vertical-align:middle;
+th,
+td {
+  vertical-align: middle;
 }
 /* custom */
 a {
-	outline:none;
-	color:#16418a;
-	text-decoration:none;
-	-webkit-backface-visibility:hidden;
+  outline: none;
+  color: #16418a;
+  text-decoration: none;
+  -webkit-backface-visibility: hidden;
 }
 a:focus {
-	outline:none;
+  outline: none;
 }
-input:focus,select:focus,textarea:focus {
-	outline:-webkit-focus-ring-color auto 0;
+input:focus,
+select:focus,
+textarea:focus {
+  outline: -webkit-focus-ring-color auto 0;
 }
 /* layout样式 */
-body{
+body {
   background: #f0f2f5;
   font-size: 14px;
   color: #444;
@@ -86,7 +174,7 @@ body{
   width: 1200px;
   margin: 0 auto;
 }
-.app-head-inner img{
+.app-head-inner img {
   float: left;
   width: 50px;
   margin-top: 20px;
@@ -94,14 +182,14 @@ body{
 .head-nav {
   float: right;
 }
-.head-nav li{
+.head-nav li {
   float: left;
   cursor: pointer;
 }
-.nav-pile{
+.nav-pile {
   padding: 0 10px;
 }
-.app-footer{
+.app-footer {
   text-align: center;
   height: 80px;
   line-height: 80px;
@@ -109,8 +197,14 @@ body{
   background: #e3e4e8;
   margin-top: 30px;
 }
-.app-content{
+.app-content {
   width: 1200px;
   margin: 0 auto;
+}
+.app-title {
+  color: #f0f2f5;
+  font-size: 30px;
+  font-weight: bolder;
+  margin-left: 40px;
 }
 </style>
